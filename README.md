@@ -27,7 +27,7 @@ The following badges display the most recent weather conditions for a location. 
 
 
 
-🛠 Methodology
+## 🛠 Methodology
 
 Data Cleaning
 
@@ -57,7 +57,9 @@ Predict crop yield based on weather and soil conditions
 
 Identify high-risk periods for specific crops
 
-🔗 Tools and Resources
+---
+
+##🔗 Tools and Resources
 
 Python libraries: pandas, numpy, matplotlib, seaborn, plotly
 
@@ -66,7 +68,9 @@ Weather APIs: OpenWeatherMap
 
 Agricultural datasets: Local Ministry of Agriculture, FAO
 
-📌 Next Steps
+---
+
+##📌 Next Steps
 
 Integrate live weather API feeds for real-time updates
 
@@ -76,8 +80,10 @@ Create interactive maps showing farm locations and rainfall overlays
 
 Merge crop yield and weather data for predictive modeling
 
+---
 
-✅ Features of this README:
+
+##✅ Features of this README:
 
 Dynamic-looking badges for temperature and rainfall
 
