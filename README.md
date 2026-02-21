@@ -25,14 +25,7 @@ date | location | temperature_c | rainfall_mm | humidity_percent | wind_speed_km
 
 ---
 
-## 📈 Animated Weather Trends
 
-I like charts… but I like them moving! Check out **weekly rainfall & temperature**:  
-![Weekly Rainfall & Temp](https://media.giphy.com/media/l0MYB8Ory7Hqefo9a/giphy.gif)  
-
-> I generate this GIF using Python (`matplotlib.animation`) from my weather dataset. Later I’ll make one for humidity too.
-
----
 
 ## ☀️ Tiny SVG Weather Fun
 
