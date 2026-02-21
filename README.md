@@ -36,6 +36,7 @@ date | location | temperature_c | rainfall_mm | humidity_percent | wind_speed_km
   </circle>
 </svg>
 
+
 🛠️ How I Work
 
 Cleaning the data
