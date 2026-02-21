@@ -25,29 +25,6 @@ The following badges display the most recent weather conditions for a location. 
 
 ---
 
-## 📈 Animated Weather Trends
-
-An animated GIF can display daily temperature and rainfall trends for a selected location. Generate the GIF using Python from your weather dataset (example provided below) and embed it here:
-
-![Mombasa Weather](mombasa_weather.gif)
-
----
-
-## ☀️ Weather Icon (Static SVG)
-
-```html
-<svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="25" cy="25" r="12" fill="yellow"/>
-  <line x1="25" y1="0" x2="25" y2="10" stroke="orange" stroke-width="2"/>
-  <line x1="25" y1="40" x2="25" y2="50" stroke="orange" stroke-width="2"/>
-  <line x1="0" y1="25" x2="10" y2="25" stroke="orange" stroke-width="2"/>
-  <line x1="40" y1="25" x2="50" y2="25" stroke="orange" stroke-width="2"/>
-  <line x1="5" y1="5" x2="12" y2="12" stroke="orange" stroke-width="2"/>
-  <line x1="38" y1="38" x2="45" y2="45" stroke="orange" stroke-width="2"/>
-  <line x1="5" y1="45" x2="12" y2="38" stroke="orange" stroke-width="2"/>
-  <line x1="38" y1="12" x2="45" y2="5" stroke="orange" stroke-width="2"/>
-</svg>
-```
 
 
 🛠 Methodology
@@ -99,39 +76,6 @@ Create interactive maps showing farm locations and rainfall overlays
 
 Merge crop yield and weather data for predictive modeling
 
-🧩 Python Example: Generate Animated Weather GIF
-import pandas as pd
-import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
-
-# Load weather dataset
-weather = pd.read_csv("weather_data.csv")  # Ensure it has date, location, temp, rainfall
-mombasa = weather[weather['location'] == 'Mombasa']
-
-fig, ax1 = plt.subplots(figsize=(6,4))
-ax2 = ax1.twinx()
-
-ax1.set_xlim(0, len(mombasa))
-ax1.set_ylim(mombasa['temperature_c'].min()-2, mombasa['temperature_c'].max()+2)
-ax2.set_ylim(0, mombasa['rainfall_mm'].max()+5)
-
-def animate(i):
-    ax1.clear()
-    ax2.clear()
-    ax1.plot(range(i), mombasa['temperature_c'].iloc[:i], color='orange', label='Temp (°C)')
-    ax2.bar(range(i), mombasa['rainfall_mm'].iloc[:i], color='blue', alpha=0.3, label='Rainfall (mm)')
-    ax1.set_ylabel('Temperature (°C)')
-    ax2.set_ylabel('Rainfall (mm)')
-    ax1.set_xlabel('Days')
-    ax1.set_ylim(mombasa['temperature_c'].min()-2, mombasa['temperature_c'].max()+2)
-    ax2.set_ylim(0, mombasa['rainfall_mm'].max()+5)
-    ax1.legend(loc='upper left')
-    ax2.legend(loc='upper right')
-
-ani = FuncAnimation(fig, animate, frames=len(mombasa), interval=300)
-ani.save('mombasa_weather.gif', writer='pillow')
-
-This generates a GIF that animates temperature and rainfall trends for Mombasa. Replace the location for other regions as needed.
 
 ✅ Features of this README:
 
