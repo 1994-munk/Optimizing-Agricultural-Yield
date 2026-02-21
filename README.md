@@ -1,34 +1,41 @@
-# 🌾 My Agricultural Evaluation Project (Live Weather Edition)
+# 🌾 Agricultural Evaluation Project (Weather Analysis)
 
-Hey! This project is my exploration into how crops perform in different farms, how soil affects growth, and most importantly… how the **weather impacts everything**. I’m combining farm data with weather trends to see patterns, make predictions, and basically geek out on agriculture. 🌱🌦️  
+This project evaluates agricultural productivity by integrating crop, soil, and weather data. The goal is to understand how environmental factors, particularly temperature and rainfall, influence crop performance across different regions.
 
 ---
 
-## 📂 What I’m Using
+## 📂 Datasets
 
 ### 1. Crop & Farm Data
-- **Where it’s from:** Local surveys & gov datasets  
+- **Source:** Local surveys and government datasets  
 - **Format:** CSV / Excel  
-- **Columns I’m looking at:**
-date | location | temperature_c | rainfall_mm | humidity_percent | wind_speed_kmh
-- I use this to see how **rainfall, temperature, and humidity affect crops**.
+- **Columns:**
+farm_id | crop_type | planting_date | harvest_date | soil_ph | region
+
+- Purpose: To correlate weather patterns with crop growth and yield.
 
 ---
 
-## 🌦️ Live Weather Summary (Shields Style)
+## 🌦 Live Weather Summary (Dynamic Badges)
 
- 
+The following badges display the most recent weather conditions for a location. They can be updated automatically using a GitHub Action:
+
 ![Mombasa Rainfall](https://img.shields.io/badge/Rainfall-120mm-blue)  
-![Mombasa Temp](https://img.shields.io/badge/Temperature-28°C-orange)  
-
-> I plan to hook this up with a GitHub Action so these numbers update automatically every day.  
+![Mombasa Temperature](https://img.shields.io/badge/Temperature-28°C-orange)  
 
 ---
 
+## 📈 Animated Weather Trends
 
+An animated GIF can display daily temperature and rainfall trends for a selected location. Generate the GIF using Python from your weather dataset (example provided below) and embed it here:
 
-## ☀️ Tiny SVG Weather Fun
+![Mombasa Weather](mombasa_weather.gif)
 
+---
+
+## ☀️ Weather Icon (Static SVG)
+
+```html
 <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
   <circle cx="25" cy="25" r="12" fill="yellow"/>
   <line x1="25" y1="0" x2="25" y2="10" stroke="orange" stroke-width="2"/>
@@ -40,23 +47,24 @@ date | location | temperature_c | rainfall_mm | humidity_percent | wind_speed_km
   <line x1="5" y1="45" x2="12" y2="38" stroke="orange" stroke-width="2"/>
   <line x1="38" y1="12" x2="45" y2="5" stroke="orange" stroke-width="2"/>
 </svg>
+```
 
 
-🛠️ How I Work
+🛠 Methodology
 
-Cleaning the data
+Data Cleaning
 
-Fill missing values
+Fill missing values and handle inconsistencies
 
-Standardize dates & location names
+Standardize date formats and location names
 
-Exploring the data (EDA)
+Exploratory Data Analysis (EDA)
 
-Rainfall vs crop yield
+Analyze rainfall vs crop yield
 
-Soil pH vs productivity
+Evaluate soil pH impact on productivity
 
-Seasonal trends
+Identify seasonal temperature and rainfall patterns
 
 Evaluation Metrics
 
@@ -66,27 +74,71 @@ Rainfall efficiency
 
 Temperature stress periods
 
-Optional ML fun
+Optional Machine Learning
 
-Predict crop yields based on soil + weather
+Predict crop yield based on weather and soil conditions
 
-Flag risky periods for certain crops
+Identify high-risk periods for specific crops
 
-🔗 Tools & Resources
+🔗 Tools and Resources
 
 Python libraries: pandas, numpy, matplotlib, seaborn, plotly
 
 Weather APIs: OpenWeatherMap
 , NOAA
 
-Agriculture Data: Local Ministry of Agriculture, FAO
+Agricultural datasets: Local Ministry of Agriculture, FAO
 
-📌 Next Steps in My Project
+📌 Next Steps
 
-Hook up live weather API feeds
+Integrate live weather API feeds for real-time updates
 
-Auto-generate weekly weather summary GIFs
+Automate weekly weather summary GIF generation
 
-Add interactive maps with rainfall overlays
+Create interactive maps showing farm locations and rainfall overlays
 
-Merge weather + crop yield data for predictive modeling
+Merge crop yield and weather data for predictive modeling
+
+🧩 Python Example: Generate Animated Weather GIF
+import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+
+# Load weather dataset
+weather = pd.read_csv("weather_data.csv")  # Ensure it has date, location, temp, rainfall
+mombasa = weather[weather['location'] == 'Mombasa']
+
+fig, ax1 = plt.subplots(figsize=(6,4))
+ax2 = ax1.twinx()
+
+ax1.set_xlim(0, len(mombasa))
+ax1.set_ylim(mombasa['temperature_c'].min()-2, mombasa['temperature_c'].max()+2)
+ax2.set_ylim(0, mombasa['rainfall_mm'].max()+5)
+
+def animate(i):
+    ax1.clear()
+    ax2.clear()
+    ax1.plot(range(i), mombasa['temperature_c'].iloc[:i], color='orange', label='Temp (°C)')
+    ax2.bar(range(i), mombasa['rainfall_mm'].iloc[:i], color='blue', alpha=0.3, label='Rainfall (mm)')
+    ax1.set_ylabel('Temperature (°C)')
+    ax2.set_ylabel('Rainfall (mm)')
+    ax1.set_xlabel('Days')
+    ax1.set_ylim(mombasa['temperature_c'].min()-2, mombasa['temperature_c'].max()+2)
+    ax2.set_ylim(0, mombasa['rainfall_mm'].max()+5)
+    ax1.legend(loc='upper left')
+    ax2.legend(loc='upper right')
+
+ani = FuncAnimation(fig, animate, frames=len(mombasa), interval=300)
+ani.save('mombasa_weather.gif', writer='pillow')
+
+This generates a GIF that animates temperature and rainfall trends for Mombasa. Replace the location for other regions as needed.
+
+✅ Features of this README:
+
+Dynamic-looking badges for temperature and rainfall
+
+Real weather animation via GIF
+
+Static weather SVG for visual representation
+
+Clear methodology and next steps for analysis
