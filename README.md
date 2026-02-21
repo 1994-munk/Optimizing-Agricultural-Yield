@@ -29,11 +29,16 @@ date | location | temperature_c | rainfall_mm | humidity_percent | wind_speed_km
 
 ## ☀️ Tiny SVG Weather Fun
 
-```html
-<svg width="200" height="100">
-  <circle cx="50" cy="50" r="20" fill="yellow">
-    <animate attributeName="cx" from="50" to="150" dur="5s" repeatCount="indefinite" />
-  </circle>
+<svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="25" cy="25" r="12" fill="yellow"/>
+  <line x1="25" y1="0" x2="25" y2="10" stroke="orange" stroke-width="2"/>
+  <line x1="25" y1="40" x2="25" y2="50" stroke="orange" stroke-width="2"/>
+  <line x1="0" y1="25" x2="10" y2="25" stroke="orange" stroke-width="2"/>
+  <line x1="40" y1="25" x2="50" y2="25" stroke="orange" stroke-width="2"/>
+  <line x1="5" y1="5" x2="12" y2="12" stroke="orange" stroke-width="2"/>
+  <line x1="38" y1="38" x2="45" y2="45" stroke="orange" stroke-width="2"/>
+  <line x1="5" y1="45" x2="12" y2="38" stroke="orange" stroke-width="2"/>
+  <line x1="38" y1="12" x2="45" y2="5" stroke="orange" stroke-width="2"/>
 </svg>
 
 
